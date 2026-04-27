@@ -4,7 +4,7 @@
 > [!WARNING]
 > *Outdated & abandoned*
 >
-> Useful for installing, deconstructing, integrating better memory into most LLM applications.
+> Useful for installing, deconstructing, integrating better memory & task thinking logic into most LLM applications.
 > > (middleware that prevents llm hallucination output)
 
 ---
