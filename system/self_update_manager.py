@@ -536,8 +536,8 @@ class SelfUpdateManager:
         
         # Copy critical files
         critical_files = [
-            "config.yaml",
-            "sovereign_config.yaml",
+            "configs/config.yaml",
+            "configs/sovereign_config.yaml",
             "requirements.txt",
             "agents/",
             "system/",

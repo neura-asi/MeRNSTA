@@ -57,7 +57,7 @@ class PlanMemory:
         """Lazy-load embedding system for similarity calculations"""
         if self._embedding_system is None:
             try:
-                from embedder import get_embeddings_cached
+                from scripts.embedder import get_embeddings_cached
                 self._embedding_system = get_embeddings_cached
             except ImportError:
                 logging.warning("[PlanMemory] Embedding system not available - using text similarity")

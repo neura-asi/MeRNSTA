@@ -100,7 +100,7 @@ class HybridVectorMemory:
                     self.vectorizers[backend] = vectorizer_map[backend]
                 elif backend == 'default':
                     # Import default vectorizer inline to avoid circular import
-                    from embedder import embed
+                    from scripts.embedder import embed
                     import numpy as np
                     def default_vectorize(text: str) -> list:
                         embedding = embed(text)

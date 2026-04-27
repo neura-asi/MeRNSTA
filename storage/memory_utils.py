@@ -36,7 +36,7 @@ from config.settings import (
     VOLATILITY_THRESHOLDS,
     QUERY_PATTERNS,  # e.g., [r'what.*(color|make|from|when)', ...]
 )
-from embedder import embed
+from scripts.embedder import embed
 from storage.formatters import format_memory_section
 
 # Embedding cache for performance
@@ -53,7 +53,7 @@ _llm_cache_misses = 0
 def _load_memory_config():
     """Load memory configuration from config.yaml - NO FALLBACK HARDCODING"""
     try:
-        config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "config.yaml")
+        config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "configs", "config.yaml")
         with open(config_path, 'r') as f:
             config = yaml.safe_load(f)
         memory_config = config.get('memory', {})
@@ -87,7 +87,7 @@ def _call_ollama_llm(prompt: str, cache_key: str = None) -> str:
     
     try:
         # Get Ollama host from config.yaml - NO FALLBACK
-        config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "config.yaml")
+        config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "configs", "config.yaml")
         with open(config_path, 'r') as f:
             config = yaml.safe_load(f)
         ollama_host = config.get('network', {}).get('ollama_host')
@@ -497,7 +497,7 @@ def _normalize_subject_with_embeddings(
     try:
         import numpy as np
 
-        from embedder import embed, most_similar
+        from scripts.embedder import embed, most_similar
 
         # Get embedding for the subject
         subject_embedding = embed(subject)
@@ -1558,7 +1558,7 @@ def _semantic_similarity(text1: str, text2: str) -> float:
     Calculate semantic similarity between two texts using embeddings.
     """
     try:
-        from embedder import embed, most_similar
+        from scripts.embedder import embed, most_similar
 
         # Get embeddings
         emb1 = embed(text1)
@@ -2021,7 +2021,7 @@ def find_facts_for_question(question: str, memory_log) -> List[TripletFact]:
         subjects = list(set(f.subject for f in all_facts))
         
         # Find most similar subject using embeddings
-        from embedder import embed
+        from scripts.embedder import embed
         import numpy as np
         
         question_embedding = embed(normalized_subject)
@@ -2582,7 +2582,7 @@ def find_facts_for_question(question: str, memory_log) -> List[TripletFact]:
         subjects = list(set(f.subject for f in all_facts))
         
         # Find most similar subject using embeddings
-        from embedder import embed
+        from scripts.embedder import embed
         import numpy as np
         
         question_embedding = embed(normalized_subject)

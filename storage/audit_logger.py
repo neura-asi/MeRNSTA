@@ -92,7 +92,7 @@ class AuditLogger:
     - Integrity verification
     """
     
-    def __init__(self, component_name: str, config_path: str = "sovereign_config.yaml"):
+    def __init__(self, component_name: str, config_path: str = "configs/sovereign_config.yaml"):
         """Initialize audit logger for a specific component."""
         self.component_name = component_name
         self.config = self._load_config(config_path)

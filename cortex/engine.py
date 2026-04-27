@@ -10,7 +10,7 @@ class CortexEngine:
     Implements the mathematical core from the README.
     """
     
-    def __init__(self, config_path: str = "config.yaml"):
+    def __init__(self, config_path: str = "configs/config.yaml"):
         self.cfg = yaml.safe_load(open(config_path))
         self.alpha = self.cfg.get("alpha", 0.9)  # Bayesian update rate
         self.gamma = self.cfg.get("gamma", 0.15)  # PPO-tuned contradiction weight

@@ -19,7 +19,7 @@ import requests
 import sklearn
 import sklearn.cluster
 
-from embedder import embed
+from scripts.embedder import embed
 from storage.db_utils import get_conn
 from storage.memory_log import MemoryLog, TripletFact
 

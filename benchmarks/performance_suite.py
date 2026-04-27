@@ -20,7 +20,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from storage.memory_log import MemoryLog
 from cortex.memory_ops import process_user_input
-from embedder import embed
+from scripts.embedder import embed
 import numpy as np
 
 class PerformanceBenchmark:

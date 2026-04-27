@@ -35,7 +35,7 @@ from config.settings import (
     embedding_model,
     CROSS_SESSION_SEARCH_ENABLED,
 )
-from embedder import embed
+from scripts.embedder import embed
 from storage.db_utils import get_conn, with_retry, get_connection_pool, ConnectionConfig
 from storage.errors import DatabaseError, safe_db_operation
 from storage.formatters import format_fact_line
@@ -105,7 +105,7 @@ class MemoryLog:
             logging.warning(f"⚠️ Hybrid memory initialization failed, using fallback: {e}")
             # Fallback to existing embedder
             def fallback_vectorizer(text: str) -> list:
-                from embedder import embed
+                from scripts.embedder import embed
                 import numpy as np
                 embedding = embed(text)
                 if isinstance(embedding, np.ndarray):
@@ -391,7 +391,7 @@ class MemoryLog:
                 except Exception as e:
                     print(f"Warning: Vectorizer failed for content '{content}': {e}, using fallback")
                     # Fallback to original embedder
-                    from embedder import embed
+                    from scripts.embedder import embed
                     embedding = embed(content)
                     if np.all(embedding == 0):
                         print(f"Warning: Fallback embedding also failed for content '{content}' in log_memory.")
@@ -1389,14 +1389,14 @@ Resolved text:"""
             return self._hybrid_semantic_search(query, topk, is_query, media_type, user_profile_id, session_id)
         
         # Fallback to traditional semantic search
-        from embedder import embed
+        from scripts.embedder import embed
         from config.settings import CROSS_SESSION_SEARCH_ENABLED, MULTIMODAL_SIMILARITY_THRESHOLD
         from config.environment import get_settings
         
         settings = get_settings()
         
         def get_embedding(text_input):
-            from embedder import embed
+            from scripts.embedder import embed
             return embed(text_input)
             
         try:
@@ -2554,7 +2554,7 @@ Summary:"""
             Most similar TripletFact if above threshold, None otherwise
         """
         try:
-            from embedder import embed
+            from scripts.embedder import embed
 
             # Get embedding for the triplet text
             triplet_embedding = embed(triplet_text)
@@ -5753,7 +5753,7 @@ Summary:"""
 
     def _find_similar_facts_internal(self, triplet_text: str, conn) -> Optional[TripletFact]:
         """Internal version of find_similar_facts that uses an existing connection."""
-        from embedder import embed
+        from scripts.embedder import embed
         import numpy as np
         from config.settings import CONFIDENCE_THRESHOLDS
         triplet_embedding = embed(triplet_text)

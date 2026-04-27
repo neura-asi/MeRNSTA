@@ -14,7 +14,7 @@ except ImportError:
         psycopg = None
 import yaml
 
-cfg_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "config.yaml")
+cfg_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "configs", "config.yaml")
 cfg = yaml.safe_load(open(cfg_path))
 URI = cfg.get("storage_uri", "sqlite:///cortex.db")
 

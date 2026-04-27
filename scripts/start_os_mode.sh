@@ -254,18 +254,18 @@ start_visualizer() {
     print_header "Starting MeRNSTA Memory Graph Visualizer"
     
     # Check if visualizer is enabled in config
-    if ! grep -q "enable_visualizer: true" config.yaml 2>/dev/null; then
-        print_error "Visualizer is not enabled in config.yaml"
-        print_info "Set 'visualizer.enable_visualizer: true' in config.yaml to enable"
+    if ! grep -q "enable_visualizer: true" configs/config.yaml 2>/dev/null; then
+        print_error "Visualizer is not enabled in configs/config.yaml"
+        print_info "Set 'visualizer.enable_visualizer: true' in configs/config.yaml to enable"
         exit 1
     fi
     
     # Get visualizer port from config (default to 8182)
-    local vis_port=$(grep -A 10 "^visualizer:" config.yaml | grep "port:" | awk '{print $2}' | head -1 | tr -d '"')
+    local vis_port=$(grep -A 10 "^visualizer:" configs/config.yaml | grep "port:" | awk '{print $2}' | head -1 | tr -d '"')
     vis_port=${vis_port:-8182}
     
     # Get visualizer host from config (default to 127.0.0.1)
-    local vis_host=$(grep -A 10 "^visualizer:" config.yaml | grep "host:" | awk '{print $2}' | head -1 | tr -d '"')
+    local vis_host=$(grep -A 10 "^visualizer:" configs/config.yaml | grep "host:" | awk '{print $2}' | head -1 | tr -d '"')
     vis_host=${vis_host:-127.0.0.1}
     
     print_info "Host: $vis_host"
