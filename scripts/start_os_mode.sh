@@ -23,7 +23,7 @@ BACKGROUND=false
 
 # Script directory
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$SCRIPT_DIR"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
 # Function to print colored output
 print_color() {
@@ -125,7 +125,7 @@ check_dependencies() {
     print_info "Checking dependencies..."
     
     # Check if requirements.txt exists
-    if [[ ! -f "$PROJECT_ROOT/requirements.txt" ]]; then
+    if [[ ! -f "$PROJECT_ROOT/configs/requirements.txt" ]]; then
         print_warning "requirements.txt not found. Continuing anyway..."
         return 0
     fi
@@ -154,7 +154,7 @@ check_dependencies() {
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
             print_info "Installing dependencies..."
-            $python_cmd -m pip install -r "$PROJECT_ROOT/requirements.txt"
+            $python_cmd -m pip install -r "$PROJECT_ROOT/configs/requirements.txt"
             print_success "Dependencies installed"
         else
             print_warning "Continuing without installing dependencies..."
@@ -254,18 +254,18 @@ start_visualizer() {
     print_header "Starting MeRNSTA Memory Graph Visualizer"
     
     # Check if visualizer is enabled in config
-    if ! grep -q "enable_visualizer: true" configs/config.yaml 2>/dev/null; then
-        print_error "Visualizer is not enabled in configs/config.yaml"
-        print_info "Set 'visualizer.enable_visualizer: true' in configs/config.yaml to enable"
+    if ! grep -q "enable_visualizer: true" "$PROJECT_ROOT/configs/config.yaml" 2>/dev/null; then
+        print_error "Visualizer is not enabled in $PROJECT_ROOT/configs/config.yaml"
+        print_info "Set 'visualizer.enable_visualizer: true' in $PROJECT_ROOT/configs/config.yaml to enable"
         exit 1
     fi
     
     # Get visualizer port from config (default to 8182)
-    local vis_port=$(grep -A 10 "^visualizer:" configs/config.yaml | grep "port:" | awk '{print $2}' | head -1 | tr -d '"')
+    local vis_port=$(grep -A 10 "^visualizer:" "$PROJECT_ROOT/configs/config.yaml" | grep "port:" | awk '{print $2}' | head -1 | tr -d '"')
     vis_port=${vis_port:-8182}
     
     # Get visualizer host from config (default to 127.0.0.1)
-    local vis_host=$(grep -A 10 "^visualizer:" configs/config.yaml | grep "host:" | awk '{print $2}' | head -1 | tr -d '"')
+    local vis_host=$(grep -A 10 "^visualizer:" "$PROJECT_ROOT/configs/config.yaml" | grep "host:" | awk '{print $2}' | head -1 | tr -d '"')
     vis_host=${vis_host:-127.0.0.1}
     
     print_info "Host: $vis_host"

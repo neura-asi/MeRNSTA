@@ -538,7 +538,7 @@ class SelfUpdateManager:
         critical_files = [
             "configs/config.yaml",
             "configs/sovereign_config.yaml",
-            "requirements.txt",
+            "configs/requirements.txt",
             "agents/",
             "system/",
             "storage/",
@@ -623,7 +623,7 @@ class SelfUpdateManager:
             repo.git.checkout(update.version)
             
             # Update dependencies if requirements changed
-            requirements_file = Path("requirements.txt")
+            requirements_file = Path("configs/requirements.txt")
             if requirements_file.exists():
                 result = subprocess.run([
                     sys.executable, "-m", "pip", "install", "-r", str(requirements_file)
