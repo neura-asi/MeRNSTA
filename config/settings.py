@@ -15,7 +15,7 @@ from typing import Dict, List, Any, Optional
 def _load_config() -> Dict[str, Any]:
     """Load all configuration from config.yaml"""
     try:
-        config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "config.yaml")
+        config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "configs", "config.yaml")
         with open(config_path, 'r') as f:
             return yaml.safe_load(f)
     except Exception as e:

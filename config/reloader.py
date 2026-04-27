@@ -59,7 +59,7 @@ class ConfigReloader(FileSystemEventHandler):
 
                 # Load YAML config if it exists
                 yaml_config = {}
-                yaml_path = Path("config.yaml")
+                yaml_path = Path("configs/config.yaml")
                 if yaml_path.exists():
                     with open(yaml_path, "r") as f:
                         yaml_config = yaml.safe_load(f) or {}
@@ -98,7 +98,7 @@ class ConfigManager:
 
     def __init__(self, config_paths: List[str] = None):
         if config_paths is None:
-            config_paths = [".env", "config.yaml"]
+            config_paths = [".env", "configs/config.yaml"]
 
         self.reloader = ConfigReloader(config_paths)
         self.observer = Observer()
@@ -135,7 +135,7 @@ class ConfigManager:
         settings = get_settings()
 
         yaml_config = {}
-        yaml_path = Path("config.yaml")
+        yaml_path = Path("configs/config.yaml")
         if yaml_path.exists():
             with open(yaml_path, "r") as f:
                 yaml_config = yaml.safe_load(f) or {}

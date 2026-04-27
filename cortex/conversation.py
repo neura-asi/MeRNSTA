@@ -19,7 +19,7 @@ from .meta_goals import execute_meta_goals
 class ConversationManager:
     """Manages the main conversation loop and system state."""
     
-    def __init__(self, config_path: str = "config.yaml"):
+    def __init__(self, config_path: str = "configs/config.yaml"):
         self.config_path = config_path
         from config.settings import DATABASE_CONFIG
         db_path = DATABASE_CONFIG.get("default_path", "memory.db")

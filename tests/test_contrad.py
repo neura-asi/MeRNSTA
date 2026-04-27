@@ -10,13 +10,13 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import yaml
 from cortex import ContradictionDetector
-from embedder import embed
+from scripts.embedder import embed
 
 def test_contradiction_detection():
     """Test contradiction detection F1 score"""
     
     # Load config
-    cfg = yaml.safe_load(open("config.yaml"))
+    cfg = yaml.safe_load(open("configs/config.yaml"))
     detector = ContradictionDetector(gamma=cfg.get("gamma", 0.15))
     detector.set_rules(cfg.get("facts", []))
     

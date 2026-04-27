@@ -214,7 +214,7 @@ class TestConfigurationReloader:
     @pytest.fixture
     def config_manager(self):
         """Create a test config manager."""
-        return ConfigManager([".env", "config.yaml"])
+        return ConfigManager([".env", "configs/config.yaml"])
     
     def test_config_manager_initialization(self, config_manager):
         """Test config manager initialization."""

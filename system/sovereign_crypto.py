@@ -140,7 +140,7 @@ class AgentContract:
 class SovereignCrypto:
     """Centralized cryptographic operations for sovereign mode."""
     
-    def __init__(self, config_path: str = "sovereign_config.yaml"):
+    def __init__(self, config_path: str = "configs/sovereign_config.yaml"):
         """Initialize with configuration."""
         self.config = self._load_config(config_path)
         self.sovereign_config = self.config.get("sovereign_mode", {})

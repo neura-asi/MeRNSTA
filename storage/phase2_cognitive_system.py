@@ -1155,7 +1155,7 @@ class Phase2AutonomousCognitiveSystem(EnhancedMemorySystem):
         """Calculate semantic similarity between two facts using embeddings first, then fallbacks."""
         # Method 1: Try embeddings if available
         try:
-            from embedder import embed
+            from scripts.embedder import embed
             import numpy as np
             from scipy.spatial.distance import cosine
             

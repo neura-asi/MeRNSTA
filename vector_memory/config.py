@@ -17,9 +17,9 @@ def load_memory_config() -> dict:
         Memory configuration dictionary
     """
     try:
-        config_path = "config.yaml"
+        config_path = "configs/config.yaml"
         if not os.path.exists(config_path):
-            config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "config.yaml")
+            config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "configs", "config.yaml")
         
         with open(config_path, 'r') as f:
             config = yaml.safe_load(f)
@@ -64,7 +64,7 @@ def get_configured_vectorizer() -> Callable[[str], list]:
         except Exception as fallback_error:
             logging.error(f"❌ Fallback {fallback} also failed: {fallback_error}")
             # Ultimate fallback - use basic embedder
-            from embedder import embed
+            from scripts.embedder import embed
             import numpy as np
             # Ensure we don't import sentence_transformers implicitly anywhere here
             import sys as _sys

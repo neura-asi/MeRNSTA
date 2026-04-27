@@ -525,7 +525,7 @@ def extract_personality_from_command(command: str) -> str:
     try:
         # Load from config.yaml via settings
         import yaml
-        with open('config.yaml', 'r') as f:
+        with open('configs/config.yaml', 'r') as f:
             config = yaml.safe_load(f)
             personalities = list(config.get('personality_profiles', {}).keys())
     except Exception:

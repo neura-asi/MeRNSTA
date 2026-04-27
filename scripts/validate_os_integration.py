@@ -71,7 +71,7 @@ def check_config_updates():
     print_status("⚙️  Checking Configuration Updates", "info")
     
     try:
-        with open("config.yaml", "r") as f:
+        with open("configs/config.yaml", "r") as f:
             config_content = f.read()
         
         if "os_integration:" in config_content:

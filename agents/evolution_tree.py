@@ -126,7 +126,7 @@ class EvolutionTree:
             mutation_id=str(uuid.uuid4()),
             mutation_type=MutationType.CONFIG_UPDATE,
             description="Automatic configuration optimization",
-            target_component="config.yaml",
+            target_component="configs/config.yaml",
             changes={
                 "optimization_type": "performance_tuning",
                 "parameters": ["memory_threshold", "response_timeout"]
@@ -762,7 +762,7 @@ and adapts to changing conditions while maintaining stability and performance.""
             mutation_id=str(uuid.uuid4()),
             mutation_type=MutationType.CONFIG_UPDATE,
             description=f"Autonomous configuration optimization: {reason}",
-            target_component="config.yaml",
+            target_component="configs/config.yaml",
             changes={
                 "trigger_reason": reason,
                 "optimization_timestamp": time.time(),

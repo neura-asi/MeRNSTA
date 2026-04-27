@@ -61,7 +61,7 @@ class StrategyOptimizer:
         self.analysis_interval = self.config.get('strategy_analysis_interval', 3600)  # 1 hour
         
         # Output file
-        self.output_file = Path("strategy_performance.jsonl")
+        self.output_file = Path("data/strategy_performance.jsonl")
         
         print(f"[StrategyOptimizer] Initialized with analysis interval={self.analysis_interval}s")
     

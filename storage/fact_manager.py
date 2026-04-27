@@ -498,7 +498,7 @@ class FactManager:
         
         # Fallback to embedding similarity
         try:
-            from embedder import embed
+            from scripts.embedder import embed
             import numpy as np
             
             emb1 = embed(pred1_lower)

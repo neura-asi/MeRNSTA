@@ -40,7 +40,7 @@ class PPOTuner:
     Reward = contradiction caught, Penalty = false positives.
     """
     
-    def __init__(self, config_path: str = "config.yaml", 
+    def __init__(self, config_path: str = "configs/config.yaml", 
                  learning_rate: float = 0.01,
                  gamma_range: Tuple[float, float] = (0.05, 0.5)):
         self.cfg = yaml.safe_load(open(config_path))

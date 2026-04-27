@@ -74,20 +74,20 @@ def main():
     
     try:
         # Load configuration
-        cfg = yaml.safe_load(open("config.yaml"))
+        cfg = yaml.safe_load(open("configs/config.yaml"))
         BETA = cfg.get("beta", 5)
         GAMMA = cfg.get("gamma", 0.15)
         MODEL = cfg.get("model", "mistral")
         
         # Initialize components
-        engine = CortexEngine("config.yaml")
+        engine = CortexEngine("configs/config.yaml")
         detector = ContradictionDetector(gamma=GAMMA)
         detector.set_rules(cfg.get("facts", []))
         entropy_calc = EntropyCalculator(temperature=DEFAULT_VALUES["volatility_default"])
-        ppo_tuner = PPOTuner("config.yaml")
+        ppo_tuner = PPOTuner("configs/config.yaml")
         
         # Initialize conversation manager
-        conversation_manager = ConversationManager("config.yaml")
+        conversation_manager = ConversationManager("configs/config.yaml")
         
         # Run based on command line arguments
         if len(sys.argv) > 1 and sys.argv[1] == "--repl":

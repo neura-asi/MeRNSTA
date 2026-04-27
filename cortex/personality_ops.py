@@ -11,7 +11,7 @@ from config.environment import get_settings
 def load_personality_profiles() -> Dict[str, Any]:
     """Load personality profiles from config.yaml."""
     try:
-        with open('config.yaml', 'r') as f:
+        with open('configs/config.yaml', 'r') as f:
             config = yaml.safe_load(f)
             return config.get('personality_profiles', {})
     except Exception as e:
